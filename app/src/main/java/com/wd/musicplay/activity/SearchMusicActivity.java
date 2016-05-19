@@ -2,6 +2,8 @@ package com.wd.musicplay.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -14,12 +16,15 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.wd.musicplay.R;
+import com.wd.musicplay.adapter.SearchMusicAdapter;
 import com.wd.musicplay.demo.SearchGson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 /**
@@ -30,17 +35,22 @@ public class SearchMusicActivity extends Activity {
     Button search;//搜索按钮
     ListView searchList;//搜索结果列表
     String TAG = "result";
+    SearchMusicAdapter adapter;
+    List<SearchGson.PageGson.Data> list;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search_music_layout);
         initView();
+
     }
     private void initView(){
         searchContent = (EditText) findViewById(R.id.edit_search);
         search = (Button) findViewById(R.id.search);
         searchList = (ListView) findViewById(R.id.search_music);
-
+        list = new ArrayList<>();
+        adapter = new SearchMusicAdapter(this,list);
+        searchList.setAdapter(adapter);
         search.setOnClickListener(listener);
     }
     View.OnClickListener listener = new View.OnClickListener() {
@@ -72,8 +82,13 @@ public class SearchMusicActivity extends Activity {
                     JSONObject object = new JSONObject(result);
                     Gson  gson = new Gson();
                     SearchGson searchGson = gson.fromJson(object.toString(), SearchGson.class);
-
-                    Log.i(TAG, "onResponse: " + searchGson.getData());
+                    List<SearchGson.PageGson.Data> data = searchGson.getData().getData();
+                    list.clear();
+                    for(SearchGson.PageGson.Data music:data){
+                        list.add(music);
+                    }
+                    handler.sendEmptyMessage(10);
+                    Log.i(TAG, "onResponse: " + searchGson.getData().getData().get(0).getFilename());
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -81,4 +96,12 @@ public class SearchMusicActivity extends Activity {
             }
         });
     }
+    Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            if (msg.what==10){
+                adapter.notifyDataSetChanged();
+            }
+        }
+    };
 }

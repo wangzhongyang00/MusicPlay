@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.wd.musicplay.R;
+import com.wd.musicplay.demo.SearchGson;
 
 import java.io.File;
 import java.util.List;
@@ -21,6 +22,9 @@ public class MusicAdapter extends BaseAdapter {
     Context context;
     LayoutInflater inflater;
 
+    public MusicAdapter( List<SearchGson.PageGson.Data> fileLis,Context context){
+
+    }
     public MusicAdapter(Context context, List<File> fileList) {
         this.context = context;
         this.fileList = fileList;

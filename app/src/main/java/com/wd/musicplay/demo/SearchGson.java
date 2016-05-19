@@ -61,7 +61,7 @@ public class SearchGson {
         this.data = data;
     }
 
-    class PageGson {
+    public class PageGson {
         private int current_page;
         private String keyword;
         private int total_rows;
@@ -116,14 +116,17 @@ public class SearchGson {
             this.data = data;
         }
 
-        class Data {
+        public class Data {
             private String filename;
             private String extname;
             private int m4afilesize;
             private int filesize;
             private int bitrate;
             private int isnew;
-
+            private int duration;
+            private String album_name;
+            private String singername;
+            private String hash;
             public String getFilename() {
                 return filename;
             }
@@ -204,10 +207,6 @@ public class SearchGson {
                 this.hash = hash;
             }
 
-            private int duration;
-            private String album_name;
-            private String singername;
-            private String hash;
         }
 
     }
