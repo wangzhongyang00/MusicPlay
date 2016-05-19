@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+  <TextView
+      android:id="@+id/search_music_name"
+      android:layout_margin="10dp"
+      android:text="歌曲名称"
+      android:textSize="25sp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content" />
+    <TextView
+        android:layout_below="@id/search_music_name"
+        android:id="@+id/search_music_singer"
+        android:layout_width="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:textSize="20sp"
+        android:text="歌手--"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_below="@id/search_music_name"
+        android:layout_toRightOf="@id/search_music_singer"
+        android:id="@+id/search_music_special"
+        android:textSize="20sp"
+        android:text="专辑名称"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/search_music_details"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="查看详情"/>
+</RelativeLayout>

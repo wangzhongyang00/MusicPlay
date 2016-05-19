@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+    <Button
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:id="@+id/search_network_music"
+        android:text="搜索网络歌曲"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <io.feeeei.circleseekbar.CircleSeekBar
+        android:id="@+id/music_seek"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp" />
+
+    <LinearLayout
+        android:id="@+id/list"
+        android:layout_alignParentBottom="true"
+        android:padding="10dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:id="@+id/music_previousTrack"
+            android:text="上一曲"
+            style="@style/SeekBarButton"/>
+        <Button
+            android:id="@+id/music_play"
+            android:text="播放"
+            style="@style/SeekBarButton" />
+        <Button
+            android:id="@+id/music_nextTrack"
+            android:text="下一曲"
+            style="@style/SeekBarButton" />
+    </LinearLayout>
+    <LinearLayout
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/music_seach"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="搜索本地歌曲" />
+
+        <TextView
+            android:id="@+id/music_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="歌曲名" />
+    </LinearLayout>
+</RelativeLayout>
