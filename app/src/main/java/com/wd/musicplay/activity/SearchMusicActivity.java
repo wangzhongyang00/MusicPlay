@@ -8,12 +8,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
 import com.squareup.okhttp.Callback;
-import com.squareup.okhttp.FormEncodingBuilder;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 import com.wd.musicplay.R;
+import com.wd.musicplay.demo.SearchGson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -55,11 +56,12 @@ public class SearchMusicActivity extends Activity {
     public void musicRequest(String musicName) {
         OkHttpClient client = new OkHttpClient();
         Request request = new Request.Builder()
-                .url("http://apis.baidu.com/geekery/music/query").addHeader("apikey","c50789bc6e54b94370a1de4f5fd64082")
+                .url("http://apis.baidu.com/geekery/music/query?s="+musicName).addHeader("apikey","c50789bc6e54b94370a1de4f5fd64082")
                 .build();
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(Request request, IOException e) {
+
 
             }
 
@@ -68,7 +70,10 @@ public class SearchMusicActivity extends Activity {
                 String result = response.body().string();
                 try {
                     JSONObject object = new JSONObject(result);
-                    Log.i(TAG, "onResponse: "+object);
+                    Gson  gson = new Gson();
+                    SearchGson searchGson = gson.fromJson(object.toString(), SearchGson.class);
+
+                    Log.i(TAG, "onResponse: " + searchGson.getData());
 
                 } catch (JSONException e) {
                     e.printStackTrace();

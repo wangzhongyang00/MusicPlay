@@ -27,7 +27,7 @@ public class SearchGson {
     private int code;
     private String status;
     private String msg;
-    private Page data;
+    private PageGson data;
 
     public int getCode() {
         return code;
@@ -53,15 +53,15 @@ public class SearchGson {
         this.msg = msg;
     }
 
-    public Page getData() {
+    public PageGson getData() {
         return data;
     }
 
-    public void setData(Page data) {
+    public void setData(PageGson data) {
         this.data = data;
     }
 
-    private class Page {
+    class PageGson {
         private int current_page;
         private String keyword;
         private int total_rows;
@@ -116,7 +116,7 @@ public class SearchGson {
             this.data = data;
         }
 
-        private class Data {
+        class Data {
             private String filename;
             private String extname;
             private int m4afilesize;
